@@ -1,0 +1,44 @@
+{
+  "id": "3332181",
+  "name": "shop",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "322957",
+      "name": "user",
+      "font_class": "40one",
+      "unicode": "e66a",
+      "unicode_decimal": 58986
+    },
+    {
+      "icon_id": "401165",
+      "name": "truck",
+      "font_class": "truck",
+      "unicode": "e884",
+      "unicode_decimal": 59524
+    },
+    {
+      "icon_id": "11398712",
+      "name": "chalkboard-teacher",
+      "font_class": "chalkboard-teacher",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "11522468",
+      "name": "money_refund_fill",
+      "font_class": "money_refund_fill",
+      "unicode": "e71e",
+      "unicode_decimal": 59166
+    },
+    {
+      "icon_id": "33517",
+      "name": "cart_fill",
+      "font_class": "cartfill",
+      "unicode": "e6b9",
+      "unicode_decimal": 59065
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 3332181 */
+  src: url('iconfont.woff2?t=1650103759943') format('woff2'),
+       url('iconfont.woff?t=1650103759943') format('woff'),
+       url('iconfont.ttf?t=1650103759943') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-40one:before {
+  content: "\e66a";
+}
+
+.icon-truck:before {
+  content: "\e884";
+}
+
+.icon-chalkboard-teacher:before {
+  content: "\e600";
+}
+
+.icon-money_refund_fill:before {
+  content: "\e71e";
+}
+
+.icon-cartfill:before {
+  content: "\e6b9";
+}
+

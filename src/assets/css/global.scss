@@ -1,5 +1,42 @@
+@import '../fonts/iconfont.css';
 html,
 body {
   margin: 0;
   padding: 0;
+}
+.container {
+  max-width: 960px;
+  margin: 40px auto;
+}
+.cover-fit {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.pointer {
+  cursor: pointer;
+}
+.list-unstyled {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: #606266;
+  transition: 0.5s;
+  &:hover {
+    color: #409eff;
+    transition: 0.5s;
+  }
+}
+.el-tabs--border-card > .el-tabs__content {
+  padding: 40px;
+}
+.step {
+  width: 60%;
+  margin: 0 auto 40px;
+}
+.el-carousel__container {
+  height: 500px;
 }
