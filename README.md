@@ -1,5 +1,9 @@
 # shop
 
+## demo
+
+https://hhhhungc.github.io/shop/
+
 ## 簡介
 
 - 使用「六角學院 API 路徑」製作
