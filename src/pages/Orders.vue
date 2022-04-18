@@ -77,7 +77,7 @@ export default {
   },
   methods: {
     getOrders(page = 1) {
-      this.$http.get(`api/ruby/orders/?page=${page}`).then((res) => {
+      this.$http.get(`api/ruby/orders?page=${page}`).then((res) => {
         if (!res.data.success) {
           return this.$message.error('获取订单资料失败')
         } else {

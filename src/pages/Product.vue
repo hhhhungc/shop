@@ -25,12 +25,8 @@
             <li><el-divider></el-divider></li>
           </ul>
           <div class="text_btn">
-            <el-input-number
-              v-model="product.num"
-              :min="1"
-              :max="10"
-              label="商品数量"
-            ></el-input-number>
+            <el-input-number v-model="num" :min="1" :max="10" label="商品数量">
+            </el-input-number>
             <el-button type="primary" @click="addToCart">加入購物車</el-button>
           </div>
         </div>
@@ -38,8 +34,8 @@
       <el-col class="bottom">
         <el-tabs type="border-card" stretch style="min-height: 300px">
           <el-tab-pane label="商品描述">{{ product.description }}</el-tab-pane>
-          <el-tab-pane label="退换或须知"
-            ><ul class="">
+          <el-tab-pane label="退换或须知">
+            <ul>
               <li>
                 商品到貨享十天猶豫期之權益，辦理退貨商品必須是全新狀態且包裝完整，商品一經拆封，等同商品價值已受損，僅能以福利品出售，若需退換貨，我方須收取價值損失之費用(回復原狀、整新費)，請先確認商品正確、外觀可接受，再行開機/使用，以免影響您的權利，祝您購物順心。
               </li>
@@ -47,10 +43,10 @@
                 個人衛生用品除商品本身有瑕疵外，未拆封商品仍享有十天猶豫期之退貨權利。但已拆封
                 (如剪標、下水等情形…)，本公司無法接受退換貨。
               </li>
-            </ul></el-tab-pane
-          >
-          <el-tab-pane label="常见问答"
-            ><ol>
+            </ul>
+          </el-tab-pane>
+          <el-tab-pane label="常见问答">
+            <ol>
               <li>
                 <b>訂單可以免運費嗎？</b><br />
                 會員的所有訂單都可享受免費的普通達配送服務。普通達配送的訂單通常會在
@@ -69,8 +65,8 @@
                 <b>如何找到適合您的尺碼？</b><br />
                 我們的尺碼表可以就您所選擇的男鞋、女鞋、服裝、配件來幫您確定合適的尺碼。點擊產品詳情頁面所顯示的「尺碼表」。
               </li>
-            </ol></el-tab-pane
-          >
+            </ol>
+          </el-tab-pane>
         </el-tabs>
       </el-col>
     </el-row>
@@ -82,8 +78,8 @@ export default {
   name: 'ProductPage',
   data() {
     return {
-      product: [],
-      active: '1'
+      product: {},
+      num: 1
     }
   },
   methods: {
@@ -93,15 +89,15 @@ export default {
           return this.$message.error('获取商品资料失败')
         } else {
           this.product = res.data.product
-          this.product.num = 1
         }
       })
     },
     addToCart() {
       const cart = {
         product_id: this.product.id,
-        qty: this.product.num
+        qty: this.num
       }
+
       this.$http.post('api/ruby/cart', { data: cart }).then((res) => {
         if (res.data.message !== '已加入購物車') {
           return this.$message.error('加入购物车失败')

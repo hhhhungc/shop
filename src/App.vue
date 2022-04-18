@@ -1,14 +1,11 @@
 <template>
   <div id="app">
-    <router-view></router-view>
-    <Footer />
+      <router-view></router-view>
   </div>
 </template>
 
 <script>
-import Footer from './components/Footer.vue'
 export default {
-  name: 'App',
-  components: { Footer }
+  name: 'App'
 }
 </script>

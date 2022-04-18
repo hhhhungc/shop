@@ -3,11 +3,22 @@ import App from './App.vue'
 import './plugins/element.js'
 import './assets/css/global.scss'
 import router from './router'
-import axios from 'axios'
 // 引入 filter
 import date from './filters/date'
 import currency from './filters/currency'
+
+// axios
+import axios from 'axios'
+import { Loading } from 'element-ui'
 axios.defaults.baseURL = 'https://vue-course-api.hexschool.io/'
+axios.interceptors.request.use((config) => {
+  Loading.service()
+  return config
+})
+axios.interceptors.response.use((config) => {
+  Loading.service().close()
+  return config
+})
 Vue.prototype.$http = axios
 Vue.config.productionTip = false
 

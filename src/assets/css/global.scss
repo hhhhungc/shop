@@ -7,6 +7,7 @@ body {
 .container {
   max-width: 960px;
   margin: 40px auto;
+  padding: 0 20px;
 }
 .cover-fit {
   width: 100%;
@@ -39,4 +40,11 @@ a {
 }
 .el-carousel__container {
   height: 500px;
+}
+.el-header {
+  background-color: #333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
 }

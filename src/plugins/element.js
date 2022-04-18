@@ -3,6 +3,7 @@ import {
   Button,
   Menu,
   MenuItem,
+  MenuItemGroup,
   Row,
   Col,
   Message,
@@ -23,12 +24,22 @@ import {
   FormItem,
   Dialog,
   Carousel,
-  CarouselItem
+  CarouselItem,
+  Container,
+  Header,
+  Aside,
+  Main,
+  MessageBox,
+  Radio,
+  RadioGroup,
+  DatePicker,
+  Footer
 } from 'element-ui'
 
 Vue.use(Button)
 Vue.use(Menu)
 Vue.use(MenuItem)
+Vue.use(MenuItemGroup)
 Vue.use(Row)
 Vue.use(Col)
 Vue.use(Card)
@@ -49,4 +60,14 @@ Vue.use(FormItem)
 Vue.use(Dialog)
 Vue.use(Carousel)
 Vue.use(CarouselItem)
+Vue.use(Container)
+Vue.use(Header)
+Vue.use(Aside)
+Vue.use(Main)
+Vue.use(Radio)
+Vue.use(RadioGroup)
+Vue.use(DatePicker)
+Vue.use(Footer)
+
 Vue.prototype.$message = Message
+Vue.prototype.$confirm = MessageBox.confirm
