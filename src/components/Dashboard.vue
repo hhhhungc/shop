@@ -50,11 +50,6 @@ export default {
   methods: {
     ...mapActions(['checkLogin']),
     ...mapActions('cartModule', ['getCart'])
-    // checkLogin() {
-    //   this.$http.post('api/user/check').then((res) => {
-    //     console.log('@@', res.data.success)
-    //   })
-    // }
   },
   computed: {
     ...mapState(['login']),

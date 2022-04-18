@@ -97,18 +97,6 @@ export default {
         id: this.product.id,
         qty: this.num
       })
-      // const cart = {
-      //   product_id: this.product.id,
-      //   qty: this.num
-      // }
-
-      // this.$http.post('api/ruby/cart', { data: cart }).then((res) => {
-      //   if (res.data.message !== '已加入購物車') {
-      //     return this.$message.error('加入购物车失败')
-      //   } else {
-      //     this.$message.success('商品已加入购物车')
-      //   }
-      // })
     }
   },
   created() {

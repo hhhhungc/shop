@@ -37,7 +37,6 @@ export default {
   methods: {
     checkLogin() {
       this.$http.post('api/user/check').then((res) => {
-        // console.log('@@', res.data.success)
         if (!res.data.success) return
         this.$router.push('/admin')
       })
