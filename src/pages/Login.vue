@@ -1,16 +1,16 @@
 <template>
   <div class="wrapper">
     <div class="login_box">
-      <div class="left">1</div>
+      <div class="left"></div>
       <div class="right">
         <p>Welcome back</p>
         <h2>Login to your admin</h2>
         <el-form ref="formRef" :rules="formRules" :model="user">
           <el-form-item label="帐号" prop="username">
-            <el-input v-model="user.username"></el-input>
+            <el-input v-model="user.username" placeholder="请输入帐号"></el-input>
           </el-form-item>
           <el-form-item label="密码" prop="password">
-            <el-input v-model="user.password" type="password"></el-input>
+            <el-input v-model="user.password" type="password" placeholder="请输入密码"></el-input>
           </el-form-item>
           <el-button type="primary" @click="signin">登入</el-button>
         </el-form>
@@ -25,7 +25,7 @@ export default {
   data() {
     return {
       user: {
-        username: 'dial012@yahoo.com.tw',
+        username: '',
         password: ''
       },
       formRules: {
