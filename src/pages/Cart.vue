@@ -10,7 +10,7 @@
     </div>
     <el-card>
       <div v-if="active === 0">
-        <el-table :data="carts" stripe empty-text="购物车内无商品">
+        <el-table :data="cart.carts" stripe empty-text="购物车内无商品">
           <el-table-column align="center" width="100px">
             <template slot-scope="scope">
               <el-button
@@ -18,7 +18,7 @@
                 icon="el-icon-delete"
                 size="mini"
                 circle
-                @click="removeItem(scope.row.id)"
+                @click="removeCartItem(scope.row.id)"
               ></el-button>
             </template>
           </el-table-column>
@@ -128,13 +128,14 @@
         <el-button @click="active--" type="primary" :disabled="active === 0"
           >上一步</el-button
         >
-        <el-button @click="next" type="primary">下一步</el-button>
+        <el-button @click="nextStep" type="primary">下一步</el-button>
       </div>
     </el-card>
   </div>
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex'
 export default {
   name: 'CartPage',
   data() {
@@ -148,8 +149,7 @@ export default {
     }
     return {
       active: 0,
-      cart: {},
-      carts: [],
+      // cart: {},
       coupon: '',
       form: {
         user: {
@@ -176,16 +176,27 @@ export default {
     }
   },
   methods: {
-    getCart() {
-      this.$http.get('api/ruby/cart').then((res) => {
-        if (!res.data.success) {
-          return this.$message.error('获取购物车列表失败')
-        } else {
-          this.carts = res.data.data.carts
-          this.cart = res.data.data
-        }
-      })
-    },
+    ...mapActions('cartModule', ['getCart', 'removeCartItem']),
+    // getCart() {
+    //   this.$http.get('api/ruby/cart').then((res) => {
+    //     if (!res.data.success) {
+    //       return this.$message.error('获取购物车列表失败')
+    //     } else {
+    //       this.carts = res.data.data.carts
+    //       this.cart = res.data.data
+    //     }
+    //   })
+    // },
+    // removeCartItem(id) {
+    //   this.$http.delete(`api/ruby/cart/${id}`).then((res) => {
+    //     if (!res.data.success) {
+    //       return this.$message.error('删除购物车商品失败')
+    //     } else {
+    //       this.$message.success('购物车商品已删除')
+    //       this.getCart()
+    //     }
+    //   })
+    // },
     addCoupon() {
       this.$http
         .post('api/ruby/coupon', { data: { code: this.coupon } })
@@ -198,19 +209,9 @@ export default {
           }
         })
     },
-    removeItem(id) {
-      this.$http.delete(`api/ruby/cart/${id}`).then((res) => {
-        if (!res.data.success) {
-          return this.$message.error('删除购物车商品失败')
-        } else {
-          this.$message.success('购物车商品已删除')
-          this.getCart()
-        }
-      })
-    },
-    next() {
+    nextStep() {
       if (this.active === 0) {
-        if (this.carts.length === 0) {
+        if (this.cart.carts.length === 0) {
           return this.$message.info('购物车内无商品')
         }
         this.active++
@@ -221,6 +222,7 @@ export default {
             if (!res.data.success) {
               return this.$message('成立订单失败')
             } else {
+              this.$store.dispatch('cartModule/getCart')
               this.$router.push(`/checkout?id=${res.data.orderId}`)
             }
           })
@@ -233,7 +235,8 @@ export default {
       return this.cart.total === this.cart.final_total
         ? '请输入优惠码'
         : '已使用优惠码'
-    }
+    },
+    ...mapState('cartModule', ['cart'])
   },
   created() {
     this.getCart()

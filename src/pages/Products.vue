@@ -76,46 +76,52 @@
 
 <script>
 import Pagination from '../components/Pagination.vue'
+import { mapState } from 'vuex'
 export default {
   name: 'ProductsPage',
   components: { Pagination },
   data() {
     return {
-      products: [],
-      pagination: {},
+      // products: [],
+      // pagination: {},
       sortBy: '',
       isReverse: true
     }
   },
   methods: {
     getProducts(page = 1) {
-      this.$http.get(`api/ruby/products?page=${page}`).then((res) => {
-        if (!res.data.success) {
-          return this.$message.error('获取商品资料失败')
-        } else {
-          this.products = res.data.products
-          this.pagination = res.data.pagination
-        }
-      })
+      // this.$http.get(`api/ruby/products?page=${page}`).then((res) => {
+      //   if (!res.data.success) {
+      //     return this.$message.error('获取商品资料失败')
+      //   } else {
+      //     this.products = res.data.products
+      //     this.pagination = res.data.pagination
+      //   }
+      // })
+      this.$store.dispatch('productModule/getProducts', page)
     },
     goProductPage(id) {
       this.$router.push(`/product?id=${id}`)
     },
     addToCart(id, qty = 1) {
-      const cart = {
-        product_id: id,
-        qty
-      }
-      this.$http.post('api/ruby/cart', { data: cart }).then((res) => {
-        if (res.data.message !== '已加入購物車') {
-          return this.$message.error('加入购物车失败')
-        } else {
-          this.$message.success('商品已加入购物车')
-        }
-      })
+      this.$store.dispatch('cartModule/addToCart', { id, qty })
     }
+    // addToCart(id, qty = 1) {
+    //   const cart = {
+    //     product_id: id,
+    //     qty
+    //   }
+    //   this.$http.post('api/ruby/cart', { data: cart }).then((res) => {
+    //     if (res.data.message !== '已加入購物車') {
+    //       return this.$message.error('加入购物车失败')
+    //     } else {
+    //       this.$message.success('商品已加入购物车')
+    //     }
+    //   })
+    // }
   },
   computed: {
+    ...mapState('productModule', ['products', 'pagination']),
     filterDate() {
       const sortBy = this.sortBy
       const newProducts = JSON.parse(JSON.stringify(this.products))

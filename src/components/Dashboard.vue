@@ -14,17 +14,17 @@
       </ul>
       <ul class="list-unstyled">
         <li class="cart">
-          <span class="cart_num">0</span>
+          <span class="cart_num">{{ cart.carts.length }}</span>
           <router-link to="/cart">
             购物车<span class="iconfont icon-cartfill"></span>
           </router-link>
         </li>
-        <li>
+        <li v-if="login === false">
           <router-link to="/login">
             登入<i class="el-icon-user-solid"></i>
           </router-link>
         </li>
-        <li>
+        <li v-else>
           <router-link to="/admin">
             管理员<i class="el-icon-user-solid"></i>
           </router-link>
@@ -41,20 +41,28 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
 export default {
   name: 'NavbarComponent',
   data() {
     return {}
   },
   methods: {
-    checkLogin() {
-      this.$http.post('api/user/check').then((res) => {
-        console.log('@@', res.data.success)
-      })
-    }
+    ...mapActions(['checkLogin']),
+    ...mapActions('cartModule', ['getCart'])
+    // checkLogin() {
+    //   this.$http.post('api/user/check').then((res) => {
+    //     console.log('@@', res.data.success)
+    //   })
+    // }
+  },
+  computed: {
+    ...mapState(['login']),
+    ...mapState('cartModule', ['cart'])
   },
   created() {
     this.checkLogin()
+    this.getCart()
   }
 }
 </script>
@@ -92,7 +100,7 @@ a {
   color: #fff;
   top: -10px;
   left: 72px;
-  padding: 2px 6px;
+  padding: 2px 7px;
   font-size: 4px;
   border-radius: 100%;
 }
