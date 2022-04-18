@@ -1,4 +1,4 @@
-# shop
+# BUY SOMETHING 仿購物網站
 
 ## demo
 
@@ -18,12 +18,11 @@ https://hhhhungc.github.io/shop/
 
 ## 使用技術
 
-- vue
-- vue-router
-- vuex
-- axios
-- bootstrap
-- jQuery
+- Vue
+- Vue-Router
+- Vuex
+- Axios
+- Element UI
 - scss
 
 本網站所有內容及資料全部來自網路，僅供網頁開發練習使用，若有侵權請告知。
